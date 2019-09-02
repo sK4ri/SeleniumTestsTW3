@@ -19,7 +19,7 @@ public class LoginPage {
     @CacheLookup
     @FindBy(id = "login-form-password") private WebElement passwordInputField;
     @CacheLookup
-    @FindBy(id = "login") private WebElement loginButton;
+    @FindBy(id = "login-form-submit") private WebElement loginButton;
     @FindBy(id = "header-details-user-fullname") private WebElement userLogo;
     @FindBy(xpath = "//p[contains(.,'Sorry')]") private WebElement loginErrorMessage;
 
