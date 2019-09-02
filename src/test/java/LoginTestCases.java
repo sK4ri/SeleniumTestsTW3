@@ -27,7 +27,7 @@ public class LoginTestCases {
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/logindata.csv")
+    @CsvFileSource(resources = "/sensitive_data/logindata.csv")
     public void login(String username, String password, String success) {
 
         assertTrue(loginPage.login(driver, username, password, success));
@@ -40,7 +40,7 @@ public class LoginTestCases {
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/correctlogindata.csv")
+    @CsvFileSource(resources = "/sensitive_data/correctlogindata.csv")
     public void loginWithEnter (String username, String password) {
 
         assertTrue(loginPage.loginWithEnter(driver, username, password));
