@@ -173,6 +173,6 @@ buildNumber.properties
 
 chromedriver
 
-src/main/java/resources
+resources/sensitive_data
 
 # End of https://www.gitignore.io/api/java,maven,intellij+all,intellij+iml
