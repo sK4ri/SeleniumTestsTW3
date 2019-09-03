@@ -1,17 +1,14 @@
 package com.codecanvas.pomtestsTW3;
 
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import waiter.Waiter;
 
 public class LoginPage {
 
-    private Waiter waiter = new Waiter();
     private final String PAGE_URL = "https://jira.codecool.codecanvas.hu/login.jsp";
 
     @CacheLookup
@@ -31,12 +28,7 @@ public class LoginPage {
 
     private boolean loginSuccess (WebDriver driver, WebElement webElement) {
 
-        try {
-            waiter.waitForElementToBeDisplayed(webElement, driver, 10);
-            return true;
-        } catch (TimeoutException e) {
-            return false;
-        }
+        return Util.waitForWebElementToBeLocated(driver, webElement);
     }
 
     public boolean login (WebDriver driver, String username, String password, String success) {
