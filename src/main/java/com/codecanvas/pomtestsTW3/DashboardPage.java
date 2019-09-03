@@ -15,7 +15,7 @@ public class DashboardPage {
     @CacheLookup
     @FindBy(id = "header-details-user-fullname") private WebElement userMenu;
     @CacheLookup
-    @FindBy(id = "log-out") private WebElement logoutButton;
+    @FindBy(id = "log_out") private WebElement logoutButton;
 
     public DashboardPage(WebDriver driver) {
 
