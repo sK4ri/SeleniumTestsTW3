@@ -21,6 +21,12 @@ public class BrowseProjectsPage {
     @FindBy(xpath = "//a[contains(@original-title, 'TOUCAN')]")
     private WebElement toucanProject;
 
+    @FindBy(id = "project-filter-text")
+    private WebElement searchInput;
+
+    @FindBy(xpath = "//tbody[@class='projects-list']/tr[1]")
+    private WebElement firstTableRow;
+
     public BrowseProjectsPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         driver.get(PAGE_URL);
@@ -39,6 +45,15 @@ public class BrowseProjectsPage {
         return projectIsPresent(driver, coalaProject)
                 && projectIsPresent(driver, jetiProject)
                 && projectIsPresent(driver, toucanProject);
+    }
+
+    public void searchForProject(WebDriver driver, String projectName) {
+        searchInput.sendKeys(projectName);
+        waiter.waitForElementTextContainsString_IgnoreWhitespaces(firstTableRow, projectName, driver);
+    }
+
+    public boolean validateProjectFound(String projectName) {
+        return firstTableRow.getText().contains(projectName);
     }
 
 }
