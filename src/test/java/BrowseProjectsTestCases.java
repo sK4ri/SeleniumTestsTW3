@@ -16,7 +16,7 @@ public class BrowseProjectsTestCases {
     void setup() {
         driver = new ChromeDriver();
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.login(driver, "user13", "CoolCanvas19.", "true");
+        loginPage.login(driver, System.getenv("USER_NAME"), System.getenv("PASSWORD"), "true");
     }
 
     @AfterEach
