@@ -41,7 +41,7 @@ public class BrowseProjectsPage {
 
     public void searchForProject(WebDriver driver, String projectName) {
         searchInput.sendKeys(projectName);
-        waiter.waitForElementTextContainsString_IgnoreWhitespaces(firstTableRow, projectName, driver);
+        Util.waitUntilElementContainsString(driver, firstTableRow, projectName);
     }
 
     public boolean validateProjectFound(String projectName) {
