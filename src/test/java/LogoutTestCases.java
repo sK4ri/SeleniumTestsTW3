@@ -34,6 +34,6 @@ public class LogoutTestCases {
     public void logout() {
 
         dashboardPage.logout(driver);
-        assertTrue(logoutPage.logoutSuccessful());
+        assertTrue(logoutPage.logoutSuccessful(driver));
     }
 }
