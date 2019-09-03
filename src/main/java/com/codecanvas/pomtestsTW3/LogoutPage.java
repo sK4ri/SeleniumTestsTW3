@@ -5,7 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-
 public class LogoutPage {
 
     private final String PAGE_URL = "https://jira.codecool.codecanvas.hu/secure/Logout!default.jspa";
@@ -18,8 +17,9 @@ public class LogoutPage {
         driver.get(PAGE_URL);
     }
 
-    public boolean logoutSuccessful() {
+    public boolean logoutSuccessful(WebDriver driver) {
 
+        Util.waitForWebElementToBeLocated(driver, loginButton);
         return "Log In".equals(loginButton.getText());
     }
 }
