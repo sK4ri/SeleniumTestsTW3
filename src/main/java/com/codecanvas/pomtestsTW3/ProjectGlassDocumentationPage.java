@@ -5,8 +5,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import waiter.Waiter;
 
-import java.util.List;
-
 public class ProjectGlassDocumentationPage {
 
     private final String PROJECT;
@@ -29,12 +27,6 @@ public class ProjectGlassDocumentationPage {
 
         driver.get(PAGE_URL);
         waiter = new Waiter();
-        try {
-            waiter.waitForElementAttributeContainsString(thirdBrowseProjectsColumn, "class", checkIconClassName, driver);
-            return true;
-        } catch (TimeoutException e) {
-            return false;
-        }
+        return Util.doesAttributeContainString(driver, thirdBrowseProjectsColumn, "class", checkIconClassName);
     }
-
 }
