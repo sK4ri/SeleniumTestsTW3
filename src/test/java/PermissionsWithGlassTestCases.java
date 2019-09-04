@@ -15,6 +15,9 @@ public class PermissionsWithGlassTestCases {
     private WebDriver driver;
     private String USERNAME = System.getenv("seleniumUsername");
     private String PASSWORD = System.getenv("seleniumPassword");
+    private final String PROJECT = "PP1";
+    private final String CURRENT_USER = USERNAME;
+    private final String ALL_USERS  = "Any logged in user";
 
     @BeforeEach
     public void setup () {
@@ -33,10 +36,10 @@ public class PermissionsWithGlassTestCases {
 
         loginPage.loginWithEnter(driver, USERNAME, PASSWORD);
 
-        ProjectSettingsPage projectSettingsPage = new ProjectSettingsPage(driver, "PP1");
-        ProjectGlassDocumentationPage projectGlassDocumentationPage = new ProjectGlassDocumentationPage(driver, "PP1");
+        ProjectSettingsPage projectSettingsPage = new ProjectSettingsPage(driver, PROJECT);
+        ProjectGlassDocumentationPage projectGlassDocumentationPage = new ProjectGlassDocumentationPage(driver, PROJECT);
         projectGlassDocumentationPage.permissionForProjectFromGlass(driver);
-        assertTrue(projectSettingsPage.permissionsForProject(driver,"Any logged in user") && projectGlassDocumentationPage.permissionForProjectFromGlass(driver));
+        assertTrue(projectSettingsPage.permissionsForProject(driver, ALL_USERS) && projectGlassDocumentationPage.permissionForProjectFromGlass(driver));
 
     }
 }
