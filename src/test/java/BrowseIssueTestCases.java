@@ -19,7 +19,7 @@ public class BrowseIssueTestCases {
     @BeforeEach
     void setup() {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.login(driver, System.getenv("USER_NAME"), System.getenv("PASSWORD"), "true");
+        loginPage.loginWithEnter(driver, System.getenv("seleniumUsername"), System.getenv("seleniumPassword"));
     }
 
     @AfterEach
