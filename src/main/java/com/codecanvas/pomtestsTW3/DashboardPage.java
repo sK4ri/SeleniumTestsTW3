@@ -11,12 +11,22 @@ public class DashboardPage {
     private final String PAGE_URL = "https://jira.codecool.codecanvas.hu/secure/Dashboard.jspa";
 
     @CacheLookup
-    @FindBy (linkText = "Issues") private WebElement issuesDropdown;
-    @FindBy (id = "issues_new_search_link_lnk") private WebElement searchForIssues;
-    @FindBy (linkText = "Projects") private WebElement projectsDropdown;
-    @FindBy (linkText = "COALA Project (COALA)") private WebElement coalaProjectLink;
-    @FindBy (linkText = "TOUCAN projekt (TOUCAN)") private WebElement toucanProjectLink;
-    @FindBy (linkText = "JETI Project (JETI)") private WebElement jetiProjectLink;
+    @FindBy(linkText = "Issues")
+    private WebElement issuesDropdown;
+    @FindBy(id = "issues_new_search_link_lnk")
+    private WebElement searchForIssues;
+    @FindBy(linkText = "Projects")
+    private WebElement projectsDropdown;
+    @FindBy(linkText = "COALA Project (COALA)")
+    private WebElement coalaProjectLink;
+    @FindBy(linkText = "TOUCAN projekt (TOUCAN)")
+    private WebElement toucanProjectLink;
+    @FindBy(linkText = "JETI Project (JETI)")
+    private WebElement jetiProjectLink;
+    @FindBy(id = "header-details-user-fullname")
+    private WebElement userMenu;
+    @FindBy(id = "log_out")
+    private WebElement logoutButton;
 
     public DashboardPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
