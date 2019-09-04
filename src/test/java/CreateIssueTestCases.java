@@ -2,7 +2,6 @@ import com.codecanvas.pomtestsTW3.DashboardPage;
 import com.codecanvas.pomtestsTW3.LoginPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.WebDriver;
@@ -28,12 +27,11 @@ public class CreateIssueTestCases {
         driver.quit();
     }
 
-//    @ParameterizedTest
-//    @CsvFileSource(resources = "/namesofallfourprojects.csv")
-    @Test
-    public void createIssue() {
+    @ParameterizedTest
+    @CsvFileSource(resources = "/namesofallfourprojects.csv")
+    public void createIssue(String projectName) {
         String summary = "This is a test issue";
-        dashboardPage.createIssue(driver, "Main Testing Project (MTP)", summary);
+        dashboardPage.createIssue(driver, projectName, summary);
         assertEquals(summary, dashboardPage.getSummaryValue());
     }
 

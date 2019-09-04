@@ -1,12 +1,9 @@
 package com.codecanvas.pomtestsTW3;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class DashboardPage {
 
@@ -42,12 +39,8 @@ public class DashboardPage {
         createIssueButton.click();
         Util.waitForWebElementToBeLocated(driver, projectNameInput);
         projectNameInput.sendKeys(Keys.chord(Keys.CONTROL, "a"), projectName + Keys.RETURN);
-        Util.waitForWebElementToBeLocated(driver, summaryInput);
-        Actions actions = new Actions(driver);
-        actions.moveToElement(summaryInput);
-        actions.click();
-        actions.sendKeys(summary);
-        actions.build().perform();
+        Util.waitForElementToBeClickable(driver, summaryInput);
+        summaryInput.sendKeys(Keys.chord(Keys.CONTROL, "a"), summary + Keys.RETURN);
         Util.waitForWebElementToBeLocated(driver, createIssueSubmit);
         createIssueSubmit.click();
         Util.waitForWebElementToBeLocated(driver, confirmationLink);
