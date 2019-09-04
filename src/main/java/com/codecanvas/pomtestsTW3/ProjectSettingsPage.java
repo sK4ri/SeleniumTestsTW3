@@ -14,9 +14,15 @@ public class ProjectSettingsPage {
 
     private Waiter waiter;
 
-    @FindBy(xpath = "//tr[contains(.,'Browse Projects')]") private WebElement browseProjectsTableRow;
+    @FindBy(xpath = "//tr[contains(.,'Browse Projects')]")
+    private WebElement browseProjectsTableRow;
+    @FindBy(xpath = "//tr[contains(.,'Create Issues')]")
+    private WebElement createIssuesTableRow;
+    @FindBy(xpath = "//tr[contains(.,'Edit Issues')]")
+    private WebElement editIssuesTableRow;
 
-    public ProjectSettingsPage (WebDriver driver, String project) {
+
+    public ProjectSettingsPage(WebDriver driver, String project) {
 
         this.PROJECT = project;
         PAGE_URL = "https://jira.codecool.codecanvas.hu/plugins/servlet/project-config/" + project;
@@ -25,9 +31,21 @@ public class ProjectSettingsPage {
         waiter = new Waiter();
     }
 
-    public boolean permissionsForProject (WebDriver driver, String permissionType) {
+    public boolean permissionsForBrowseProjects(WebDriver driver, String permissionType) {
 
         driver.get(PERMISSIONS_URL);
-        return Util.doesContainString(driver, browseProjectsTableRow,permissionType);
-        }
+        return Util.doesContainString(driver, browseProjectsTableRow, permissionType);
+    }
+
+    public boolean permissionsForCreateIssues(WebDriver driver, String permissionType) {
+
+        driver.get(PERMISSIONS_URL);
+        return Util.doesContainString(driver, createIssuesTableRow, permissionType);
+    }
+
+    public boolean permissionsForEditIssues(WebDriver driver, String permissionType) {
+
+        driver.get(PERMISSIONS_URL);
+        return Util.doesContainString(driver, editIssuesTableRow, permissionType);
+    }
 }
