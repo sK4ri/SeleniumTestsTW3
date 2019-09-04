@@ -19,7 +19,7 @@ public class BrowseProjectsTestCases {
     void setup() {
         driver = new ChromeDriver();
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.loginWithEnter(driver, System.getenv("SeleniumUsername"), System.getenv("SeleniumPassword"));
+        loginPage.loginWithEnter(driver, System.getenv("seleniumUsername"), System.getenv("seleniumPassword"));
         browseProjectsPage = new BrowseProjectsPage(driver);
     }
 
