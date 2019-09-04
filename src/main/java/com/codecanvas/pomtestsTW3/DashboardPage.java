@@ -1,16 +1,12 @@
 package com.codecanvas.pomtestsTW3;
 
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class DashboardPage {
-
-//    private final String PAGE_URL = "https://jira.codecool.codecanvas.hu/secure/Dashboard.jspa";
 
     @CacheLookup
     @FindBy(id = "header-details-user-fullname") private WebElement userMenu;
@@ -20,13 +16,15 @@ public class DashboardPage {
     @FindBy(id = "project-field") private WebElement projectNameInput;
     @FindBy(id = "summary") private WebElement summaryInput;
     @FindBy(xpath = "//input[@id='create-issue-submit']") private WebElement createIssueSubmit;
-    @FindBy(xpath = "//*[@id=\"aui-flag-container\"]/div/div/a") private WebElement confirmationLink;
+    @FindBy(xpath = "//*[@id='aui-flag-container']/div/div/a") private WebElement confirmationLink;
     @FindBy(id = "summary-val") private WebElement summaryValue;
+    @FindBy(id = "opsbar-operations_more") private WebElement moreOptions;
+    @FindBy(xpath = "//*[@id='delete-issue']/a/span") private WebElement deleteIssue;
+    @FindBy(id = "delete-issue-submit") private WebElement deleteIssueSubmit;
 
     public DashboardPage(WebDriver driver) {
 
         PageFactory.initElements(driver, this);
-//        driver.get(PAGE_URL);
     }
 
     public void logout(WebDriver driver) {
@@ -46,15 +44,25 @@ public class DashboardPage {
         Actions actions = new Actions(driver);
         actions.moveToElement(summaryInput);
         actions.click();
-        actions.sendKeys(summary + Keys.RETURN);
+        actions.sendKeys(summary);
         actions.build().perform();
         Util.waitForWebElementToBeLocated(driver, createIssueSubmit);
         createIssueSubmit.click();
         Util.waitForWebElementToBeLocated(driver, confirmationLink);
         confirmationLink.click();
+        deleteTestIssue(driver);
     }
 
     public String getSummaryValue() {
         return summaryValue.getText();
+    }
+
+    private void deleteTestIssue(WebDriver driver) {
+        Util.waitForWebElementToBeLocated(driver, moreOptions);
+        moreOptions.click();
+        Util.waitForWebElementToBeLocated(driver, deleteIssue);
+        deleteIssue.click();
+        Util.waitForWebElementToBeLocated(driver, deleteIssueSubmit);
+        deleteIssueSubmit.click();
     }
 }

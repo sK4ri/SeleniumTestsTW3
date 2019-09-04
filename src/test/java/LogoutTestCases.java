@@ -21,7 +21,7 @@ public class LogoutTestCases {
 
         driver = new ChromeDriver();
         loginPage = new LoginPage(driver);
-        loginPage.loginWithEnter(driver, System.getenv("USER_NAME"), System.getenv("PASSWORD"));
+        loginPage.loginWithEnter(driver, System.getenv("SeleniumUsername"), System.getenv("SeleniumPassword"));
         dashboardPage = new DashboardPage(driver);
         logoutPage = new LogoutPage(driver);
     }
