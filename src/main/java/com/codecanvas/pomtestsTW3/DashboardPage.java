@@ -20,6 +20,8 @@ public class DashboardPage {
     @FindBy(id = "opsbar-operations_more") private WebElement moreOptions;
     @FindBy(xpath = "//*[@id='delete-issue']/a/span") private WebElement deleteIssue;
     @FindBy(id = "delete-issue-submit") private WebElement deleteIssueSubmit;
+    @FindBy(xpath = "//input[@id='qf-create-another']") private WebElement createAnotherCheckbox;
+    @FindBy(xpath = "//div[@class='aui-message aui-message-success closeable']") private WebElement confirmationMessage;
 
     public DashboardPage(WebDriver driver) {
 
@@ -34,15 +36,9 @@ public class DashboardPage {
         logoutButton.click();
     }
 
-    public void createIssue(WebDriver driver, String projectName, String summary) {
-        Util.waitForWebElementToBeLocated(driver, createIssueButton);
-        createIssueButton.click();
-        Util.waitForWebElementToBeLocated(driver, projectNameInput);
-        projectNameInput.sendKeys(Keys.chord(Keys.CONTROL, "a"), projectName + Keys.RETURN);
-        Util.waitForElementToBeClickable(driver, summaryInput);
-        summaryInput.sendKeys(Keys.chord(Keys.CONTROL, "a"), summary + Keys.RETURN);
-        Util.waitForWebElementToBeLocated(driver, createIssueSubmit);
-        createIssueSubmit.click();
+    public void createIssue(WebDriver driver, String projectName, String summary) throws InterruptedException {
+        selectProjectAndFillSummary(driver, projectName, summary);
+        submitIssueCreation(driver);
         Util.waitForWebElementToBeLocated(driver, confirmationLink);
         confirmationLink.click();
         deleteTestIssue(driver);
@@ -50,6 +46,21 @@ public class DashboardPage {
 
     public String getSummaryValue() {
         return summaryValue.getText();
+    }
+
+    private void submitIssueCreation(WebDriver driver) {
+        Util.waitForWebElementToBeLocated(driver, createIssueSubmit);
+        createIssueSubmit.click();
+    }
+
+    private void selectProjectAndFillSummary(WebDriver driver, String projectName, String summary) throws InterruptedException {
+        Util.waitForWebElementToBeLocated(driver, createIssueButton);
+        createIssueButton.click();
+        Util.waitForWebElementToBeLocated(driver, projectNameInput);
+        projectNameInput.sendKeys(Keys.chord(Keys.CONTROL, "a"), projectName + Keys.RETURN);
+        Util.waitForElementToBeClickable(driver, summaryInput);
+        Thread.sleep(300);
+        summaryInput.sendKeys(Keys.chord(Keys.CONTROL, "a"), summary); // TODO: InvalidElementStateException
     }
 
     private void deleteTestIssue(WebDriver driver) {
@@ -60,4 +71,16 @@ public class DashboardPage {
         Util.waitForWebElementToBeLocated(driver, deleteIssueSubmit);
         deleteIssueSubmit.click();
     }
+
+    public void createChainIssue(WebDriver driver, String projectName, String summary) throws InterruptedException {
+        selectProjectAndFillSummary(driver, projectName, summary);
+        Util.waitForWebElementToBeLocated(driver, createAnotherCheckbox);
+        createAnotherCheckbox.click();
+        submitIssueCreation(driver);
+    }
+
+    public boolean validateChainIssueCreation(WebDriver driver) {
+        return Util.waitForWebElementToBeLocated(driver, confirmationMessage);
+    }
+
 }
