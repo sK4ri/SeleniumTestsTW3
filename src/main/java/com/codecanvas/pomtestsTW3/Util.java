@@ -19,4 +19,8 @@ public class Util {
         }
     }
 
+    public static void waitUntilElementContainsString(WebDriver driver, WebElement element, String text) {
+        waiter.waitForElementTextContainsString_IgnoreWhitespaces(element, text, driver);
+    }
+
 }
