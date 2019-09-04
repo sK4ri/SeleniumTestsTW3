@@ -1,6 +1,5 @@
 package com.codecanvas.pomtestsTW3;
 
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,12 +28,6 @@ public class ProjectSettingsPage {
     public boolean permissionsForProject (WebDriver driver, String permissionType) {
 
         driver.get(PERMISSIONS_URL);
-
-        try {
-            waiter.waitForElementTextContainsString(browseProjectsTableRow, permissionType, driver);
-            return true;
-        } catch (TimeoutException e) {
-            return false;
+        return Util.doesContainString(driver, browseProjectsTableRow,permissionType);
         }
-    }
 }
