@@ -13,6 +13,9 @@ public class ProjectGlassDocumentationPage {
     private Waiter waiter;
 
     @FindBy(xpath = "//tr[contains(.,'Browse Projects') ]/td[3]/div") private WebElement thirdBrowseProjectsColumn;
+    @FindBy(xpath = "//tr[contains(.,'Create Issues') ]/td[3]/div") private WebElement thirdCreateIssuesColumn;
+    @FindBy(xpath = "//tr[contains(.,'Edit Issues') ]/td[3]/div") private WebElement thirdEditIssuesColumn;
+
 
     private String checkIconClassName = "glass-true-icon";
 
@@ -23,10 +26,24 @@ public class ProjectGlassDocumentationPage {
         PageFactory.initElements(driver, this);
     }
 
-    public boolean permissionForProjectFromGlass (WebDriver driver) {
+    public boolean glassPermissionForBrowseProjects (WebDriver driver) {
 
         driver.get(PAGE_URL);
         waiter = new Waiter();
         return Util.doesAttributeContainString(driver, thirdBrowseProjectsColumn, "class", checkIconClassName);
+    }
+
+    public boolean glassPermissionForCreateIssues (WebDriver driver) {
+
+        driver.get(PAGE_URL);
+        waiter = new Waiter();
+        return Util.doesAttributeContainString(driver, thirdCreateIssuesColumn, "class", checkIconClassName);
+    }
+
+    public boolean glassPermissionForEditIssues (WebDriver driver) {
+
+        driver.get(PAGE_URL);
+        waiter = new Waiter();
+        return Util.doesAttributeContainString(driver, thirdEditIssuesColumn, "class", checkIconClassName);
     }
 }

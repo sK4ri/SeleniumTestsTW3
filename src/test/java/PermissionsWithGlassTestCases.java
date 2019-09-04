@@ -38,8 +38,26 @@ public class PermissionsWithGlassTestCases {
 
         ProjectSettingsPage projectSettingsPage = new ProjectSettingsPage(driver, PROJECT);
         ProjectGlassDocumentationPage projectGlassDocumentationPage = new ProjectGlassDocumentationPage(driver, PROJECT);
-        projectGlassDocumentationPage.permissionForProjectFromGlass(driver);
-        assertTrue(projectSettingsPage.permissionsForProject(driver, ALL_USERS) && projectGlassDocumentationPage.permissionForProjectFromGlass(driver));
+        assertTrue(projectSettingsPage.permissionsForBrowseProjects(driver, ALL_USERS) && projectGlassDocumentationPage.glassPermissionForBrowseProjects(driver));
+    }
 
+    @Test
+    public void createIssuePermission() {
+
+        loginPage.loginWithEnter(driver, USERNAME, PASSWORD);
+
+        ProjectSettingsPage projectSettingsPage = new ProjectSettingsPage(driver, PROJECT);
+        ProjectGlassDocumentationPage projectGlassDocumentationPage = new ProjectGlassDocumentationPage(driver, PROJECT);
+        assertTrue(projectSettingsPage.permissionsForCreateIssues(driver, ALL_USERS) && projectGlassDocumentationPage.glassPermissionForCreateIssues(driver));
+    }
+
+    @Test
+    public void editIssuesPermissions() {
+
+        loginPage.loginWithEnter(driver, USERNAME, PASSWORD);
+
+        ProjectSettingsPage projectSettingsPage = new ProjectSettingsPage(driver, PROJECT);
+        ProjectGlassDocumentationPage projectGlassDocumentationPage = new ProjectGlassDocumentationPage(driver, PROJECT);
+        assertTrue(projectSettingsPage.permissionsForEditIssues(driver, ALL_USERS) && projectGlassDocumentationPage.glassPermissionForEditIssues(driver));
     }
 }
