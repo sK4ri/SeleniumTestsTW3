@@ -8,8 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 
 public class DashboardPage {
 
-    private final String PAGE_URL = "https://jira.codecool.codecanvas.hu/secure/Dashboard.jspa";
-
     @CacheLookup
     @FindBy(linkText = "Issues")
     private WebElement issuesDropdown;
@@ -30,7 +28,6 @@ public class DashboardPage {
 
     public DashboardPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
-        driver.get(PAGE_URL);
     }
 
     public void clickIssues(WebDriver driver) {
