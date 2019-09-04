@@ -1,6 +1,4 @@
-import com.codecanvas.pomtestsTW3.CoalaIssuesPage;
-import com.codecanvas.pomtestsTW3.LoginPage;
-import com.codecanvas.pomtestsTW3.DashboardPage;
+import com.codecanvas.pomtestsTW3.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,6 +12,9 @@ public class BrowseIssueTestCases {
     private WebDriver driver = new ChromeDriver();
     private DashboardPage mainPage = new DashboardPage(driver);
     private CoalaIssuesPage coalaIssuesPage = new CoalaIssuesPage(driver);
+    private ToucanIssuesPage toucanIssuesPage = new ToucanIssuesPage(driver);
+    private JetiIssuesPage jetiIssuesPage = new JetiIssuesPage(driver);
+
 
     @BeforeEach
     void setup() {
@@ -48,5 +49,20 @@ public class BrowseIssueTestCases {
     void searchForJetiIssues() {
         mainPage.getToJetiIssues(driver);
         assertTrue(driver.getCurrentUrl().contains("https://jira.codecool.codecanvas.hu/projects/JETI/issues"));
+    }
+
+    @Test
+    void locateCoalaIssues() {
+        assertTrue(coalaIssuesPage.checkForCoalaIssues(driver));
+    }
+
+    @Test
+    void locateToucanIssues() {
+        assertTrue(toucanIssuesPage.checkForToucanIssues(driver));
+    }
+
+    @Test
+    void locateJetiIssues() {
+        assertTrue(jetiIssuesPage.checkForJetiIssues(driver));
     }
 }

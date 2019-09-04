@@ -1,5 +1,7 @@
 package com.codecanvas.pomtestsTW3;
 
+import org.openqa.selenium.ElementNotVisibleException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -23,9 +25,16 @@ public class CoalaIssuesPage {
         driver.get(PAGE_URL);
     }
 
-    public void checkForCoalaIssues(WebDriver driver) {
-        Util.waitForWebElementToBeLocated(driver, coala1);
-        Util.waitForWebElementToBeLocated(driver, coala2);
-        Util.waitForWebElementToBeLocated(driver, coala3);
+    public boolean checkForCoalaIssues(WebDriver driver) {
+        try {
+            Util.waitForWebElementToBeLocated(driver, coala1);
+            Util.waitForWebElementToBeLocated(driver, coala2);
+            Util.waitForWebElementToBeLocated(driver, coala3);
+            return true;
+        }
+        catch (TimeoutException e) {
+            return false;
+        }
     }
+
 }

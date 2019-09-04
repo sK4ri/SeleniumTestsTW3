@@ -65,4 +65,12 @@ public class DashboardPage {
         Util.waitForWebElementToBeLocated(driver, jetiProjectLink);
         jetiProjectLink.click();
     }
+
+    public void logout(WebDriver driver) {
+
+        Util.waitForWebElementToBeLocated(driver, userMenu);
+        userMenu.click();
+        Util.waitForWebElementToBeLocated(driver, logoutButton);
+        logoutButton.click();
+    }
 }
