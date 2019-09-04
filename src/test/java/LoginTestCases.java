@@ -28,7 +28,7 @@ public class LoginTestCases {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/sensitive_data/logindata.csv")
-    public void login(String username, String password, String success) {
+    public void login(String username, String password, String success) throws InterruptedException {
 
         assertTrue(loginPage.login(driver, username, password, success));
     }
