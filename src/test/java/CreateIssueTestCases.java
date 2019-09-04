@@ -3,6 +3,8 @@ import com.codecanvas.pomtestsTW3.LoginPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -26,6 +28,8 @@ public class CreateIssueTestCases {
         driver.quit();
     }
 
+//    @ParameterizedTest
+//    @CsvFileSource(resources = "/namesofallfourprojects.csv")
     @Test
     public void createIssue() {
         String summary = "This is a test issue";
