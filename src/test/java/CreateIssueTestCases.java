@@ -30,14 +30,14 @@ public class CreateIssueTestCases {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/namesofallfourprojects.csv")
-    public void createIssue(String projectName) throws InterruptedException {
+    public void createIssue(String projectName) {
         String summary = "This is a test issue";
         dashboardPage.createIssue(driver, projectName, summary);
         assertEquals(summary, dashboardPage.getSummaryValue());
     }
 
     @Test
-    public void createIssueChain() throws InterruptedException {
+    public void createIssueChain() {
         String projectName = "Main Testing Project (MTP)";
         String summary = "Test issue chain";
         dashboardPage.createChainIssue(driver, projectName, summary);

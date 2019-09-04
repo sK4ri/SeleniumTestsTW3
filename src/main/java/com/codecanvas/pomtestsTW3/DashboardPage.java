@@ -36,7 +36,7 @@ public class DashboardPage {
         logoutButton.click();
     }
 
-    public void createIssue(WebDriver driver, String projectName, String summary) throws InterruptedException {
+    public void createIssue(WebDriver driver, String projectName, String summary) {
         selectProjectAndFillSummary(driver, projectName, summary);
         submitIssueCreation(driver);
         Util.waitForWebElementToBeLocated(driver, confirmationLink);
@@ -53,14 +53,17 @@ public class DashboardPage {
         createIssueSubmit.click();
     }
 
-    private void selectProjectAndFillSummary(WebDriver driver, String projectName, String summary) throws InterruptedException {
+    private void selectProjectAndFillSummary(WebDriver driver, String projectName, String summary) {
         Util.waitForWebElementToBeLocated(driver, createIssueButton);
         createIssueButton.click();
         Util.waitForWebElementToBeLocated(driver, projectNameInput);
         projectNameInput.sendKeys(Keys.chord(Keys.CONTROL, "a"), projectName + Keys.RETURN);
         Util.waitForElementToBeClickable(driver, summaryInput);
-        Thread.sleep(300);
-        summaryInput.sendKeys(Keys.chord(Keys.CONTROL, "a"), summary); // TODO: InvalidElementStateException
+        summaryInput.sendKeys(summary);
+
+        // TODO: InvalidElementStateException OR StaleElementReferenceException
+        //  tried: Thread.sleep, waiting for "Create" button, try-catch, for loop, refresh, click before sendkeys, Actions class, ..
+
     }
 
     private void deleteTestIssue(WebDriver driver) {
@@ -72,7 +75,7 @@ public class DashboardPage {
         deleteIssueSubmit.click();
     }
 
-    public void createChainIssue(WebDriver driver, String projectName, String summary) throws InterruptedException {
+    public void createChainIssue(WebDriver driver, String projectName, String summary) {
         selectProjectAndFillSummary(driver, projectName, summary);
         Util.waitForWebElementToBeLocated(driver, createAnotherCheckbox);
         createAnotherCheckbox.click();
