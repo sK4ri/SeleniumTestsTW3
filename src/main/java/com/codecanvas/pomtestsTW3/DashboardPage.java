@@ -1,6 +1,7 @@
 package com.codecanvas.pomtestsTW3;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -36,7 +37,7 @@ public class DashboardPage {
         logoutButton.click();
     }
 
-    public void createIssue(WebDriver driver, String projectName, String summary) {
+    public void createIssue(WebDriver driver, String projectName, String summary) throws InterruptedException {
         selectProjectAndFillSummary(driver, projectName, summary);
         submitIssueCreation(driver);
         Util.waitForWebElementToBeLocated(driver, confirmationLink);
@@ -53,13 +54,19 @@ public class DashboardPage {
         createIssueSubmit.click();
     }
 
-    private void selectProjectAndFillSummary(WebDriver driver, String projectName, String summary) {
+    private void selectProjectAndFillSummary(WebDriver driver, String projectName, String summary) throws InterruptedException {
         Util.waitForWebElementToBeLocated(driver, createIssueButton);
         createIssueButton.click();
         Util.waitForWebElementToBeLocated(driver, projectNameInput);
         projectNameInput.sendKeys(Keys.chord(Keys.CONTROL, "a"), projectName + Keys.RETURN);
-        Util.waitForElementToBeClickable(driver, summaryInput);
-        summaryInput.sendKeys(summary);
+        Thread.sleep(10000);
+        Actions actions = new Actions(driver);
+        actions.moveToElement(summaryInput);
+        actions.click();
+        actions.sendKeys(summary);
+        actions.build().perform();
+
+//        Util.waitForElementToBeClickable(driver, summaryInput);
 
         // TODO: InvalidElementStateException OR StaleElementReferenceException
         //  tried: Thread.sleep, waiting for "Create" button, try-catch, for loop, refresh, click before sendkeys, Actions class, ..
@@ -75,7 +82,7 @@ public class DashboardPage {
         deleteIssueSubmit.click();
     }
 
-    public void createChainIssue(WebDriver driver, String projectName, String summary) {
+    public void createChainIssue(WebDriver driver, String projectName, String summary) throws InterruptedException {
         selectProjectAndFillSummary(driver, projectName, summary);
         Util.waitForWebElementToBeLocated(driver, createAnotherCheckbox);
         createAnotherCheckbox.click();
