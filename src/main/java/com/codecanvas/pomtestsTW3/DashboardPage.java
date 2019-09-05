@@ -60,16 +60,17 @@ public class DashboardPage {
         Util.waitForWebElementToBeLocated(driver, projectNameInput);
         projectNameInput.sendKeys(Keys.chord(Keys.CONTROL, "a"), projectName + Keys.RETURN);
         Thread.sleep(10000);
-        Actions actions = new Actions(driver);
-        actions.moveToElement(summaryInput);
-        actions.click();
-        actions.sendKeys(summary);
-        actions.build().perform();
+        summaryInput.sendKeys(summary);
 
-//        Util.waitForElementToBeClickable(driver, summaryInput);
+//        Actions actions = new Actions(driver);
+//        actions.moveToElement(summaryInput);
+//        actions.click();
+//        actions.sendKeys(summary);
+//        actions.build().perform();
 
-        // TODO: InvalidElementStateException OR StaleElementReferenceException
-        //  tried: Thread.sleep, waiting for "Create" button, try-catch, for loop, refresh, click before sendkeys, Actions class, ..
+        // TODO: only works with Thread. sleep (JETI should fail, because of user permission! everything else passes)
+        //  exception: InvalidElementStateException OR StaleElementReferenceException OR assert error (not the entire summary is entered)
+        //  tried: wait for input element to be visible/located/clickable, waiting for "Create" button, try-catch, for loop, refresh, click before sendkeys, Actions class
 
     }
 
