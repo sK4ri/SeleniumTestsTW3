@@ -1,10 +1,12 @@
 package com.codecanvas.pomtestsTW3;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class DashboardPage {
 
@@ -37,7 +39,7 @@ public class DashboardPage {
         logoutButton.click();
     }
 
-    public void createIssue(WebDriver driver, String projectName, String summary) throws InterruptedException {
+    public void createIssue(WebDriver driver, String projectName, String summary) {
         selectProjectAndFillSummary(driver, projectName, summary);
         submitIssueCreation(driver);
         Util.waitForWebElementToBeLocated(driver, confirmationLink);
@@ -54,24 +56,21 @@ public class DashboardPage {
         createIssueSubmit.click();
     }
 
-    private void selectProjectAndFillSummary(WebDriver driver, String projectName, String summary) throws InterruptedException {
+    private void selectProjectAndFillSummary(WebDriver driver, String projectName, String summary) {
         Util.waitForWebElementToBeLocated(driver, createIssueButton);
         createIssueButton.click();
         Util.waitForWebElementToBeLocated(driver, projectNameInput);
         projectNameInput.sendKeys(Keys.chord(Keys.CONTROL, "a"), projectName + Keys.RETURN);
-        Thread.sleep(10000);
+
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        try {
+            wait.until((ExpectedCondition<Boolean>) d -> !summaryInput.isEnabled());
+            wait.until((ExpectedCondition<Boolean>) d -> summaryInput.isEnabled());
+        } catch (Exception e) {
+            // no problem
+        }
+        wait.until(ExpectedConditions.elementToBeClickable(summaryInput));
         summaryInput.sendKeys(summary);
-
-//        Actions actions = new Actions(driver);
-//        actions.moveToElement(summaryInput);
-//        actions.click();
-//        actions.sendKeys(summary);
-//        actions.build().perform();
-
-        // TODO: only works with Thread. sleep (JETI should fail, because of user permission! everything else passes)
-        //  exception: InvalidElementStateException OR StaleElementReferenceException OR assert error (not the entire summary is entered)
-        //  tried: wait for input element to be visible/located/clickable, waiting for "Create" button, try-catch, for loop, refresh, click before sendkeys, Actions class
-
     }
 
     private void deleteTestIssue(WebDriver driver) {
@@ -83,7 +82,7 @@ public class DashboardPage {
         deleteIssueSubmit.click();
     }
 
-    public void createChainIssue(WebDriver driver, String projectName, String summary) throws InterruptedException {
+    public void createChainIssue(WebDriver driver, String projectName, String summary) {
         selectProjectAndFillSummary(driver, projectName, summary);
         Util.waitForWebElementToBeLocated(driver, createAnotherCheckbox);
         createAnotherCheckbox.click();
