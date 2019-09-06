@@ -36,4 +36,22 @@ public class Util {
         }
     }
 
+    public static boolean doesContainString(WebDriver driver, WebElement element, String text) {
+        try {
+            waiter.waitForElementTextContainsString_IgnoreWhitespaces(element, text, driver);
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
+    }
+
+    public static boolean doesAttributeContainString(WebDriver driver, WebElement element, String attribute, String text) {
+        try {
+            waiter.waitForElementAttributeContainsString(element, attribute, text, driver);
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
+    }
+
 }
