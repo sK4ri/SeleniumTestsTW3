@@ -56,7 +56,7 @@ public class DashboardPage {
         PageFactory.initElements(driver, this);
     }
 
-    public void clickIssues(WebDriver driver) {
+    private void clickIssues(WebDriver driver) {
         Util.waitForWebElementToBeLocated(driver, issuesDropdown);
         issuesDropdown.click();
     }
@@ -67,24 +67,24 @@ public class DashboardPage {
         searchForIssues.click();
     }
 
-    public void clickProjects(WebDriver driver) {
+    private void clickProjects() {
         projectsDropdown.click();
     }
 
     public void getToCoalaIssues(WebDriver driver) {
-        clickProjects(driver);
+        clickProjects();
         Util.waitForWebElementToBeLocated(driver, coalaProjectLink);
         coalaProjectLink.click();
     }
 
     public void getToToucanIssues(WebDriver driver) {
-        clickProjects(driver);
+        clickProjects();
         Util.waitForWebElementToBeLocated(driver, toucanProjectLink);
         toucanProjectLink.click();
     }
 
     public void getToJetiIssues(WebDriver driver) {
-        clickProjects(driver);
+        clickProjects();
         Util.waitForWebElementToBeLocated(driver, jetiProjectLink);
         jetiProjectLink.click();
     }
