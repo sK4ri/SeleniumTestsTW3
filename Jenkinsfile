@@ -1,30 +1,11 @@
-pipeline {
-    agent any
-        stages {
-            stage('First Stage') {
-                steps {
-                    echo 'Stage 1'
-                }
-            }
-            stage('Second Stage') {
-                parallel {
-                    stage("Parallel 1") {
-                        steps {
-                            echo 'Stage 2 - Parallel 1'
-                        }
-                    }
-                    stage("Parallel 2") {
-                        steps {
-                            echo 'Stage 2 - Parallel 2'
-                        }
-                    }
-                }
-                
-            }
-            stage('Third Stage') {
-                steps {
-                    echo 'Stage 3'
-                }
-            }
-        }
+node {
+    stage('SCM Checkout') {
+        
+        git 'https://https://github.com/sK4ri/SeleniumTestsTw3'
+    }
+    stage('Compile-Package') {
+        def mvnHome = tool name: 'maven-3', type: 'maven'
+        sh "${mvnHome}/bin/mvn package"
+    }
 }
+        
