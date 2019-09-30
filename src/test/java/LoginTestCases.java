@@ -4,20 +4,30 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LoginTestCases {
 
+    private String nodeURL;
     private WebDriver driver;
     private LoginPage loginPage;
 
     @BeforeEach
-    void setup() {
-        driver = new ChromeDriver();
+    void setup() throws MalformedURLException {
+        nodeURL = "http://10.44.2.0:4444/wd/hub/";
+        ChromeOptions chromeOptions = new ChromeOptions();
+        driver = new RemoteWebDriver(new URL(nodeURL), chromeOptions);
         loginPage = new LoginPage(driver);
     }
 
