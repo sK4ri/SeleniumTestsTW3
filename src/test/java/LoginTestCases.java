@@ -31,6 +31,7 @@ public class LoginTestCases {
         loginPage = new LoginPage(driver);
     }
 
+
     @AfterEach
     void quit() {
         driver.quit();
