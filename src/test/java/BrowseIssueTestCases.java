@@ -19,7 +19,8 @@ public class BrowseIssueTestCases {
     @BeforeEach
     void setup() {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.loginWithEnter(driver, System.getenv("seleniumUsername"), System.getenv("seleniumPassword"));
+        // loginPage.loginWithEnter(driver, System.getenv("user"), System.getenv("password"));
+        loginPage.loginWithEnter(driver,"user12", "CoolCanvas19.");
     }
 
     @AfterEach
