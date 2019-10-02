@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class BrowseIssueTestCases {
 
-    private WebDriver driver = new ChromeDriver();
+    private WebDriver driver;
     private String nodeURL;
 
     private DashboardPage mainPage = new DashboardPage(driver);
