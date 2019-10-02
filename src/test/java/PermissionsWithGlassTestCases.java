@@ -16,7 +16,6 @@ public class PermissionsWithGlassTestCases {
     private String USERNAME = System.getenv("seleniumUsername");
     private String PASSWORD = System.getenv("seleniumPassword");
     private final String PROJECT = "PP1";
-    private final String CURRENT_USER = USERNAME;
     private final String ALL_USERS  = "Any logged in user";
 
     @BeforeEach

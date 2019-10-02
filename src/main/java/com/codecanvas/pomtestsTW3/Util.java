@@ -18,22 +18,8 @@ public class Util {
         }
     }
 
-    public static boolean waitUntilElementContainsString(WebDriver driver, WebElement element, String text) {
-        try {
-            waiter.waitForElementTextContainsString_IgnoreWhitespaces(element, text, driver);
-            return true;
-        } catch (TimeoutException e) {
-            return false;
-        }
-    }
-
-    public static boolean waitForElementToBeClickable(WebDriver driver, WebElement element) {
-        try {
-            waiter.click(element, driver, 10);
-            return true;
-        } catch (TimeoutException e) {
-            return false;
-        }
+    public static void waitUntilElementContainsString(WebDriver driver, WebElement element, String text) {
+        waiter.waitForElementTextContainsString_IgnoreWhitespaces(element, text, driver);
     }
 
     public static boolean doesContainString(WebDriver driver, WebElement element, String text) {

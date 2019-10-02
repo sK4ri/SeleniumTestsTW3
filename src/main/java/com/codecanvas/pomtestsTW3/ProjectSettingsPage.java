@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import waiter.Waiter;
 
 public class ProjectSettingsPage {
 
@@ -12,23 +11,17 @@ public class ProjectSettingsPage {
     private final String PAGE_URL;
     private final String PERMISSIONS_URL;
 
-    private Waiter waiter;
-
-    @FindBy(xpath = "//tr[contains(.,'Browse Projects')]")
-    private WebElement browseProjectsTableRow;
-    @FindBy(xpath = "//tr[contains(.,'Create Issues')]")
-    private WebElement createIssuesTableRow;
-    @FindBy(xpath = "//tr[contains(.,'Edit Issues')]")
-    private WebElement editIssuesTableRow;
+    @FindBy(xpath = "//tr[contains(.,'Browse Projects')]") private WebElement browseProjectsTableRow;
+    @FindBy(xpath = "//tr[contains(.,'Create Issues')]") private WebElement createIssuesTableRow;
+    @FindBy(xpath = "//tr[contains(.,'Edit Issues')]") private WebElement editIssuesTableRow;
 
 
     public ProjectSettingsPage(WebDriver driver, String project) {
 
-        this.PROJECT = project;
+        PROJECT = project;
         PAGE_URL = "https://jira.codecool.codecanvas.hu/plugins/servlet/project-config/" + project;
         PERMISSIONS_URL = PAGE_URL + "/permissions";
         PageFactory.initElements(driver, this);
-        waiter = new Waiter();
     }
 
     public boolean permissionsForBrowseProjects(WebDriver driver, String permissionType) {

@@ -15,13 +15,15 @@ public class LogoutTestCases {
     private LoginPage loginPage;
     private DashboardPage dashboardPage;
     private LogoutPage logoutPage;
+    private String username = System.getenv("SEL_USERNAME");
+    private String password = System.getenv("SEL_PASSWORD");
 
     @BeforeEach
     public void setup() {
 
         driver = new ChromeDriver();
         loginPage = new LoginPage(driver);
-        loginPage.loginWithEnter(driver, System.getenv("seleniumUsername"), System.getenv("seleniumPassword"));
+        loginPage.loginWithEnter(driver, username, password);
         dashboardPage = new DashboardPage(driver);
         logoutPage = new LogoutPage(driver);
     }
