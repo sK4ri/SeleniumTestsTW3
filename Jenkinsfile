@@ -10,7 +10,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh 'mvn test -Dtest=LoginTestCases'
+                sh 'mvn test -Dtest=BrowseIssueTestCases'
             }
         }
         stage('Deploy') {
