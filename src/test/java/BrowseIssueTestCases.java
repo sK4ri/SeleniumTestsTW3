@@ -4,12 +4,19 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BrowseIssueTestCases {
 
     private WebDriver driver = new ChromeDriver();
+    private String nodeURL;
+
     private DashboardPage mainPage = new DashboardPage(driver);
     private CoalaIssuesPage coalaIssuesPage = new CoalaIssuesPage(driver);
     private ToucanIssuesPage toucanIssuesPage = new ToucanIssuesPage(driver);
@@ -17,10 +24,14 @@ public class BrowseIssueTestCases {
 
 
     @BeforeEach
-    void setup() {
+    void setup() throws MalformedURLException {
+        nodeURL = "http://10.44.2.0:4444/wd/hub/";
+        ChromeOptions chromeOptions = new ChromeOptions();
+        driver = new RemoteWebDriver(new URL(nodeURL), chromeOptions);
         LoginPage loginPage = new LoginPage(driver);
         // loginPage.loginWithEnter(driver, System.getenv("user"), System.getenv("password"));
         loginPage.loginWithEnter(driver,"user12", "CoolCanvas19.");
+
     }
 
     @AfterEach
