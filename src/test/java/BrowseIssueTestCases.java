@@ -16,19 +16,20 @@ public class BrowseIssueTestCases {
 
     private WebDriver driver;
     private String nodeURL;
-
-
-
+    private DashboardPage mainPage;
+        private CoalaIssuesPage coalaIssuesPage;
+          private ToucanIssuesPage toucanIssuesPage;
+        private JetiIssuesPage jetiIssuesPage;
 
     @BeforeEach
     void setup() throws MalformedURLException {
         nodeURL = "http://10.44.2.0:4444/wd/hub/";
         ChromeOptions chromeOptions = new ChromeOptions();
         driver = new RemoteWebDriver(new URL(nodeURL), chromeOptions);
-          private DashboardPage mainPage = new DashboardPage(driver);
-    private CoalaIssuesPage coalaIssuesPage = new CoalaIssuesPage(driver);
-    private ToucanIssuesPage toucanIssuesPage = new ToucanIssuesPage(driver);
-    private JetiIssuesPage jetiIssuesPage = new JetiIssuesPage(driver);
+          mainPage = new DashboardPage(driver);
+   coalaIssuesPage = new CoalaIssuesPage(driver);
+   toucanIssuesPage = new ToucanIssuesPage(driver);
+   jetiIssuesPage = new JetiIssuesPage(driver);
         LoginPage loginPage = new LoginPage(driver);
         // loginPage.loginWithEnter(driver, System.getenv("user"), System.getenv("password"));
         loginPage.loginWithEnter(driver,"user12", "CoolCanvas19.");
