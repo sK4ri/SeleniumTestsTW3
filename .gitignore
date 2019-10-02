@@ -171,7 +171,6 @@ buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 
-chromedriver
 
 src/main/resources/sensitive_data
 
