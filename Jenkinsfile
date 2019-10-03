@@ -47,7 +47,7 @@ pipeline {
     post {
         always {
             echo 'This is the post step'
-            sh pwd
+            sh 'pwd'
             archiveArtifacts 'target/*.xml'
             // junit 'build/reports/**/*.xml'
             deleteDir()
