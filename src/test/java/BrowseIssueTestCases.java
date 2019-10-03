@@ -26,10 +26,10 @@ public class BrowseIssueTestCases {
         nodeURL = "http://10.44.2.0:4444/wd/hub/";
         ChromeOptions chromeOptions = new ChromeOptions();
         driver = new RemoteWebDriver(new URL(nodeURL), chromeOptions);
-          mainPage = new DashboardPage(driver);
-   coalaIssuesPage = new CoalaIssuesPage(driver);
-   toucanIssuesPage = new ToucanIssuesPage(driver);
-   jetiIssuesPage = new JetiIssuesPage(driver);
+        mainPage = new DashboardPage(driver);
+        coalaIssuesPage = new CoalaIssuesPage(driver);
+        toucanIssuesPage = new ToucanIssuesPage(driver);
+        jetiIssuesPage = new JetiIssuesPage(driver);
         LoginPage loginPage = new LoginPage(driver);
         // loginPage.loginWithEnter(driver, System.getenv("user"), System.getenv("password"));
         loginPage.loginWithEnter(driver,"user12", "CoolCanvas19.");
