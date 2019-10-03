@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -38,7 +39,12 @@ public class LoginTestCases {
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/sensitive_data/logindata.csv")
+    //@CsvFileSource(resources = "/sensitive_data/logindata.csv")
+    //user19,CoolCanvas19.,true
+    // lobab,CoolCanvas19.,false
+    // user19,sanyi,false
+    // admin,admin,false
+    @CsvSource({"user19,CoolCanvas19.,true", "lobab,CoolCanvas19.,false"})
     public void login(String username, String password, String success) throws InterruptedException {
 
         assertTrue(loginPage.login(driver, username, password, success));
@@ -51,7 +57,8 @@ public class LoginTestCases {
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/sensitive_data/correctlogindata.csv")
+    // @CsvFileSource(resources = "/sensitive_data/correctlogindata.csv")
+    @CsvSource({"user19,CoolCanvas19."})
     public void loginWithEnter (String username, String password) {
 
         assertTrue(loginPage.loginWithEnter(driver, username, password));
