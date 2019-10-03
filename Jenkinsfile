@@ -37,4 +37,9 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            echo 'This is the post step'
+        }
+    }
 }
