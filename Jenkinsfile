@@ -50,7 +50,7 @@ pipeline {
             sh 'ls'
             // archiveArtifacts 'target/surefire-reports/*.xml'
             junit 'target/surefire-reports/*.xml'
-            // deleteDir()
+            deleteDir()
         }
     }
 }
