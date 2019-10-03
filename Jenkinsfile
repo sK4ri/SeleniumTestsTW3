@@ -47,10 +47,9 @@ pipeline {
     post {
         always {
             echo 'This is the post step'
-            sh 'pwd'
-            archiveArtifacts 'target/*.xml'
+            archiveArtifacts '/home/jenkins/agent/workspace/user12/jenkins-test/*.xml'
             // junit 'build/reports/**/*.xml'
-            deleteDir()
+            // deleteDir()
         }
     }
 }
