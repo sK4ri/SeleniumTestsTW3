@@ -23,7 +23,8 @@ public class BrowseIssueTestCases {
 
     @BeforeEach
     void setup() throws MalformedURLException {
-        nodeURL = "http://10.44.2.0:4444/wd/hub/";
+        // nodeURL = "http://10.44.2.0:4444/wd/hub/";
+        nodeURL = "https://selenium:CoolCanvas19.@seleniumhub.codecool.codecanvas.hu/wd/hub";
         ChromeOptions chromeOptions = new ChromeOptions();
         driver = new RemoteWebDriver(new URL(nodeURL), chromeOptions);
         mainPage = new DashboardPage(driver);

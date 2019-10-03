@@ -9,12 +9,28 @@ pipeline {
                 sh 'java -version'
             }
         }
-        stage('Test') {
-            steps {
-                echo 'Testing...'
-                sh 'mvn test -Dtest=LoginTestCases'
-            }
-        }
+        stage('Run tests') {
+
+                    parallel {
+
+                                stage("User login test") {
+                                    steps {
+                                        echo 'Testing login...'
+                                        sh 'mvn test -Dtest=LoginTestCases'
+                                    }
+                                }
+
+                                stage("Browse Issues test") {
+                                    steps {
+                                        echo 'Testing browse issues...'
+                                        sh 'mvn test -Dtest=BrowseIssueTestCases'
+                                    }
+                                }
+
+                            }
+
+                }
+
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
