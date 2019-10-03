@@ -47,6 +47,7 @@ pipeline {
     post {
         always {
             echo 'This is the post step'
+            junit 'build/reports/**/*.xml'
             deleteDir()
         }
     }
