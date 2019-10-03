@@ -47,7 +47,8 @@ pipeline {
     post {
         always {
             echo 'This is the post step'
-            archiveArtifacts '/home/jenkins/agent/workspace/user12/jenkins-test/*.xml'
+            sh 'ls'
+            archiveArtifacts '/home/jenkins/agent/workspace/user12/jenkins-test/target/surefire-reports/*.xml'
             // junit 'build/reports/**/*.xml'
             // deleteDir()
         }
