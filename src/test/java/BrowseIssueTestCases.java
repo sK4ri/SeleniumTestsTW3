@@ -47,7 +47,7 @@ public class BrowseIssueTestCases {
         mainPage.getToIssuesPage(driver);
         assertTrue(driver.getCurrentUrl().contains("https://jira.codecool.codecanvas.hu/browse/"));
     }
-
+/*
     @Test
     void searchForCoalaIssues() {
         mainPage.getToCoalaIssues(driver);
@@ -80,4 +80,6 @@ public class BrowseIssueTestCases {
     void locateJetiIssues() {
         assertTrue(jetiIssuesPage.checkForJetiIssues(driver));
     }
+
+ */
 }

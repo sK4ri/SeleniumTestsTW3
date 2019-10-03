@@ -11,25 +11,25 @@ pipeline {
         }
         stage('Run tests') {
 
-                    parallel {
+            parallel {
 
-                                stage("User login test") {
-                                    steps {
-                                        echo 'Testing login...'
-                                        sh 'mvn test -Dtest=LoginTestCases'
-                                    }
-                                }
-
-                                stage("Browse Issues test") {
-                                    steps {
-                                        echo 'Testing browse issues...'
-                                        sh 'mvn test -Dtest=BrowseIssueTestCases'
-                                    }
-                                }
-
-                            }
-
+                stage("User login test") {
+                    steps {
+                        echo 'Testing login...'
+                        sh 'mvn test -Dtest=LoginTestCases'
+                    }
                 }
+
+                stage("Browse Issues test") {
+                    steps {
+                        echo 'Testing browse issues...'
+                        sh 'mvn test -Dtest=BrowseIssueTestCases'
+                    }
+                }
+
+                    }
+
+        }
 
         stage('Deploy') {
             steps {
