@@ -47,8 +47,8 @@ pipeline {
     post {
         always {
             echo 'This is the post step'
-            archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
-            junit 'build/reports/**/*.xml'
+            // archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
+            archive 'build/reports/**/*.xml'
             deleteDir()
         }
     }
