@@ -20,6 +20,13 @@ pipeline {
                     }
                 }
 
+                stage("Logout test") {
+                    steps {
+                        echo 'Testing logout...'
+                        sh 'mvn test -Dtest=LogoutTestCases'
+                    }
+                }
+
                 stage("Browse Issues test") {
                     steps {
                         echo 'Testing browse issues...'
@@ -27,7 +34,7 @@ pipeline {
                     }
                 }
 
-                    }
+            }
 
         }
 
