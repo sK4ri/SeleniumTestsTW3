@@ -6,6 +6,7 @@ pipeline {
             steps {
                 echo 'Building..'
                 sh 'mvn install clean'
+                sh 'java -version'
             }
         }
         stage('Test') {
