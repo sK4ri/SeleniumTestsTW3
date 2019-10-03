@@ -39,6 +39,7 @@ public class LoginTestCases {
         driver.quit();
     }
 
+    /*
     @ParameterizedTest
     //@CsvFileSource(resources = "/sensitive_data/logindata.csv")
     //user19,CoolCanvas19.,true
@@ -56,7 +57,7 @@ public class LoginTestCases {
 
         assertTrue(loginPage.loginWithMissingCredentials(driver));
     }
-
+*/
     @ParameterizedTest
     // @CsvFileSource(resources = "/sensitive_data/correctlogindata.csv")
     @CsvSource({"user19,CoolCanvas19."})
