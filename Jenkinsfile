@@ -47,7 +47,7 @@ pipeline {
     post {
         always {
             echo 'This is the post step'
-            sh 'ls'
+            // sh 'ls'
             // archiveArtifacts 'target/surefire-reports/*.xml'
             junit 'target/surefire-reports/*.xml'
             deleteDir()
